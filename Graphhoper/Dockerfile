@@ -1,4 +1,4 @@
-FROM maven:3.6.3-jdk-8 as build
+FROM maven:3.8.4-openjdk-17 AS build
 
 WORKDIR /graphhopper
 
@@ -6,7 +6,7 @@ COPY graphhopper .
 
 RUN mvn clean install
 
-FROM openjdk:11.0-jre
+FROM openjdk:17-jdk-alpine
 
 ENV JAVA_OPTS "-Xmx1g -Xms1g"
 
@@ -23,8 +23,8 @@ RUN sed -i '/^ *bind_host/s/^ */&# /p' config-example.yml
 
 VOLUME [ "/data" ]
 
-EXPOSE 8989 8990
+EXPOSE 80
 
-HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail http://localhost:8989/health || exit 1
+HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail http://localhost/health || exit 1
 
-ENTRYPOINT [ "./graphhopper.sh", "-c", "config-example.yml" ]
+ENTRYPOINT [ "./graphhopper.sh", "-c", "config-example.yml", "-i", "portugal-latest.osm.pbf", "--host", "0.0.0.0", "--port", "80"]
