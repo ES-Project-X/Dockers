@@ -36,10 +36,32 @@ graphhopper:
 #      turn_costs: true
 #      u_turn_costs: 60
 
-    - name: bike
+    - name: custom_bike
       # to use the bike vehicle make sure to not ignore cycleways etc., see import.osm.ignored_highways below
-      vehicle: bike
-      custom_model_files: []
+      vehicle: mtb
+      weighting: custom
+      custom_model: {
+        "distance_influence": 15,
+        "priority": [
+          {
+            "if": "road_environment == FERRY",
+            "multiply_by": "0.9"
+          },
+          {
+            "if": "bike_network == MISSING",
+            "multiply_by": "0.3"
+          },
+          {
+            "if": "road_class == MOTORWAY",
+            "multiply_by": "0"
+          }
+        ],
+        "speed": [],
+        "areas": {
+          "type": "FeatureCollection",
+          "features": []
+        }
+      }
 
   # instead of the inbuilt custom models (see ./core/src/main/resources/com/graphhopper/custom_models)
   # you can specify a folder where to find your own custom model files
@@ -52,7 +74,7 @@ graphhopper:
   # profiles with `turn_costs: true` a more elaborate preparation is required (longer preparation time and more memory
   # usage) and the routing will also be slower than with `turn_costs: false`.
   profiles_ch:
-    - profile: bike
+    - profile: custom_bike
 
   # Hybrid mode:
   # Similar to speed mode, the hybrid mode (Landmarks, LM) also speeds up routing by doing calculating auxiliary data
