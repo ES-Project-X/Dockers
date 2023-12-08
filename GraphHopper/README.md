@@ -1,4 +1,4 @@
-# Graphhopper docker
+# GraphHopper Docker
 
 **To run the docker for the first time:**
 
