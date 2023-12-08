@@ -1,2 +1,0 @@
-*land-high.shp filter=lfs diff=lfs merge=lfs -text
-*land-polygons-split-3857.zip filter=lfs diff=lfs merge=lfs -text

@@ -1,3 +1,0 @@
-# OsmType  Tag          DataType     Flags
-node,way   height			int4			linear
-way        way_area     real                # This is calculated during import
