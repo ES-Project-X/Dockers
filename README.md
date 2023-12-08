@@ -7,7 +7,7 @@ This repository contains a custom configuration of the GraphHopper routing engin
 ## Installation
 
 - Run `wget https://download.geofabrik.de/europe/portugal-latest.osm.pbf` in root to download the Portugal OSM data (305 MB).
-- Run `./build.sh` in root to build an updated GraphHopper Docker image from its repository.
+- Run `./build.sh` in root to build an updated GraphHopper Docker image from its repository with our custom weights.
 
 ## Running Locally
 
