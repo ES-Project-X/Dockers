@@ -1,4 +1,4 @@
-# Project X - GraphHopper
+# BiX - GraphHopper
 
 ## Description
 
